@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geometry Dash MOD APK – All Levels Unlocked</title>
+<meta name="description" content="Download Geometry Dash MOD APK v2.2.143 – All levels unlocked, unlimited coins, God Mode, no ads. Free download for Android, iOS and PC.">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon-yellow: #FFD700;
+    --neon-blue: #00CFFF;
+    --neon-pink: #FF3CAC;
+    --neon-green: #39FF14;
+    --dark: #050510;
+    --dark2: #0a0a1f;
+    --dark3: #10103a;
+    --text: #e0e0ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--dark);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Animated background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,207,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,207,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: gridMove 20s linear infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  @keyframes gridMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 40px 40px; }
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 40px;
+    background: rgba(5,5,16,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,207,255,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: var(--neon-yellow);
+    text-shadow: 0 0 20px rgba(255,215,0,0.6);
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--neon-blue); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 20px 60px;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .hero-bg-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,215,0,0.12) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+    50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+  }
+
+  /* Floating cubes */
+  .cube {
+    position: absolute;
+    width: 30px; height: 30px;
+    border: 2px solid;
+    animation: floatCube linear infinite;
+    opacity: 0.4;
+  }
+  .cube:nth-child(1) { border-color: var(--neon-yellow); left: 10%; top: 20%; animation-duration: 8s; animation-delay: 0s; width: 20px; height: 20px; }
+  .cube:nth-child(2) { border-color: var(--neon-blue); left: 80%; top: 30%; animation-duration: 11s; animation-delay: 2s; width: 35px; height: 35px; }
+  .cube:nth-child(3) { border-color: var(--neon-pink); left: 60%; top: 70%; animation-duration: 9s; animation-delay: 1s; width: 25px; height: 25px; }
+  .cube:nth-child(4) { border-color: var(--neon-green); left: 25%; top: 65%; animation-duration: 13s; animation-delay: 3s; width: 15px; height: 15px; }
+  .cube:nth-child(5) { border-color: var(--neon-yellow); left: 90%; top: 60%; animation-duration: 7s; animation-delay: 0.5s; width: 40px; height: 40px; }
+  .cube:nth-child(6) { border-color: var(--neon-blue); left: 5%; top: 75%; animation-duration: 10s; animation-delay: 4s; width: 18px; height: 18px; }
+
+  @keyframes floatCube {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+    50% { opacity: 0.7; }
+    100% { transform: translateY(-80px) rotate(360deg); opacity: 0.4; }
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(0,207,255,0.1);
+    border: 1px solid rgba(0,207,255,0.4);
+    color: var(--neon-blue);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.2rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    animation: fadeDown 0.9s ease 0.1s both;
+  }
+
+  .hero-title span.yellow { color: var(--neon-yellow); text-shadow: 0 0 30px rgba(255,215,0,0.7); }
+  .hero-title span.blue { color: var(--neon-blue); text-shadow: 0 0 30px rgba(0,207,255,0.7); }
+
+  .hero-version {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    color: var(--neon-pink);
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    animation: fadeDown 1s ease 0.2s both;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: rgba(224,224,255,0.7);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    animation: fadeDown 1s ease 0.3s both;
+  }
+
+  .btn-group {
+    display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+    animation: fadeDown 1s ease 0.4s both;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--neon-yellow);
+    color: #000;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 14px 36px;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.3s;
+    box-shadow: 0 0 30px rgba(255,215,0,0.4);
+  }
+  .btn-primary:hover {
+    background: #fff;
+    box-shadow: 0 0 50px rgba(255,215,0,0.7);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: var(--neon-blue);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 14px 36px;
+    text-decoration: none;
+    border-radius: 2px;
+    border: 1px solid var(--neon-blue);
+    transition: all 0.3s;
+  }
+  .btn-secondary:hover {
+    background: rgba(0,207,255,0.1);
+    box-shadow: 0 0 30px rgba(0,207,255,0.3);
+    transform: translateY(-2px);
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    padding: 30px 40px;
+    background: rgba(255,215,0,0.05);
+    border-top: 1px solid rgba(255,215,0,0.15);
+    border-bottom: 1px solid rgba(255,215,0,0.15);
+  }
+
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--neon-yellow);
+    text-shadow: 0 0 20px rgba(255,215,0,0.5);
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(224,224,255,0.5);
+    margin-top: 4px;
+  }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 90px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--neon-pink);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 900;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+
+  .section-title span { color: var(--neon-yellow); }
+
+  .section-desc {
+    color: rgba(224,224,255,0.6);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    max-width: 600px;
+    margin-bottom: 50px;
+  }
+
+  /* FEATURES GRID */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .feature-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 28px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent, var(--neon-yellow));
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .feature-card:hover::before { transform: scaleX(1); }
+  .feature-card:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.15);
+    transform: translateY(-4px);
+  }
+
+  .feature-card:nth-child(2) { --accent: var(--neon-blue); }
+  .feature-card:nth-child(3) { --accent: var(--neon-pink); }
+  .feature-card:nth-child(4) { --accent: var(--neon-green); }
+  .feature-card:nth-child(5) { --accent: var(--neon-blue); }
+  .feature-card:nth-child(6) { --accent: var(--neon-pink); }
+
+  .feature-icon {
+    font-size: 2rem;
+    margin-bottom: 14px;
+  }
+
+  .feature-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .feature-desc {
+    font-size: 0.92rem;
+    color: rgba(224,224,255,0.55);
+    line-height: 1.7;
+  }
+
+  /* INFO TABLE */
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .info-table tr {
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transition: background 0.2s;
+  }
+  .info-table tr:hover { background: rgba(255,215,0,0.04); }
+
+  .info-table td {
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+
+  .info-table td:first-child {
+    color: rgba(224,224,255,0.5);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    width: 40%;
+  }
+
+  .info-table td:last-child {
+    color: var(--neon-yellow);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+  }
+
+  /* LEVELS */
+  .levels-list { display: flex; flex-direction: column; gap: 16px; }
+
+  .level-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 20px 24px;
+    transition: all 0.3s;
+  }
+
+  .level-item:hover {
+    background: rgba(255,255,255,0.06);
+    transform: translateX(6px);
+  }
+
+  .level-badge {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 2px;
+    min-width: 80px;
+    text-align: center;
+  }
+
+  .badge-easy { background: rgba(57,255,20,0.15); color: var(--neon-green); border: 1px solid rgba(57,255,20,0.3); }
+  .badge-normal { background: rgba(0,207,255,0.15); color: var(--neon-blue); border: 1px solid rgba(0,207,255,0.3); }
+  .badge-hard { background: rgba(255,215,0,0.15); color: var(--neon-yellow); border: 1px solid rgba(255,215,0,0.3); }
+  .badge-harder { background: rgba(255,100,0,0.15); color: #FF6400; border: 1px solid rgba(255,100,0,0.3); }
+  .badge-demon { background: rgba(255,60,172,0.15); color: var(--neon-pink); border: 1px solid rgba(255,60,172,0.3); }
+
+  .level-info h4 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .level-info p {
+    font-size: 0.9rem;
+    color: rgba(224,224,255,0.5);
+  }
+
+  /* DOWNLOAD SECTION */
+  .download-section {
+    background: linear-gradient(135deg, rgba(255,215,0,0.08) 0%, rgba(0,207,255,0.08) 100%);
+    border: 1px solid rgba(255,215,0,0.2);
+    border-radius: 8px;
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    margin: 0 40px 80px;
+  }
+
+  .download-section::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .download-section h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+
+  .download-section p {
+    color: rgba(224,224,255,0.6);
+    font-size: 1.05rem;
+    margin-bottom: 36px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .download-platforms {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+
+  .platform-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+
+  .platform-btn:hover {
+    background: rgba(255,215,0,0.1);
+    border-color: var(--neon-yellow);
+    color: var(--neon-yellow);
+    transform: translateY(-2px);
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 30px 40px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    color: rgba(224,224,255,0.35);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+
+  footer a { color: var(--neon-yellow); text-decoration: none; }
+
+  /* ANIMATIONS */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,215,0,0.2), transparent);
+    margin: 0 40px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    section { padding: 60px 20px; }
+    .download-section { margin: 0 20px 60px; padding: 40px 24px; }
+    .stats-bar { gap: 30px; padding: 24px 20px; }
+    .divider { margin: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">GD PRO</a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#info">Info</a></li>
+    <li><a href="#levels">Levels</a></li>
+    <li><a href="#download">Download</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg-glow"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+  <div class="cube"></div>
+
+  <span class="hero-tag">Latest Release 2026</span>
+  <h1 class="hero-title">
+    <span class="yellow">GEOMETRY</span><br>
+    <span class="blue">DASH</span> MOD APK
+  </h1>
+  <div class="hero-version">Version v2.2.143</div>
+  <p class="hero-sub">
+    All levels unlocked. Unlimited coins. God Mode activated.
+    The ultimate rhythm-based arcade experience — completely free.
+  </p>
+  <div class="btn-group">
+    <a href="https://geometrydashpro.net/" class="btn-primary" target="_blank">Download Now</a>
+    <a href="#features" class="btn-secondary">Explore Features</a>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">5M+</div>
+    <div class="stat-label">Downloads</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">4.5</div>
+    <div class="stat-label">Rating</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">30K+</div>
+    <div class="stat-label">Levels</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">153MB</div>
+    <div class="stat-label">Size</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">Free</div>
+    <div class="stat-label">Cost</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="fade-in">
+    <div class="section-label">What You Get</div>
+    <h2 class="section-title">Packed With <span>Pro Features</span></h2>
+    <p class="section-desc">
+      Everything the official version locks away — unlocked, unlimited, and ready to play from the moment you download.
+    </p>
+  </div>
+  <div class="features-grid fade-in">
+    <div class="feature-card">
+      <div class="feature-icon">🔓</div>
+      <div class="feature-title">All Levels Unlocked</div>
+      <div class="feature-desc">Jump into any level instantly. No need to grind through previous stages just to access the good stuff.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💰</div>
+      <div class="feature-title">Unlimited Coins</div>
+      <div class="feature-desc">Stars, orbs, diamonds — you get them all without limits. Upgrade everything and dominate every leaderboard.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title">God Mode</div>
+      <div class="feature-desc">Navigate through spikes and obstacles without dying. Perfect for mastering level layouts before going full speed.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🚫</div>
+      <div class="feature-title">Zero Ads</div>
+      <div class="feature-desc">No interruptions. No popups. No banners. Pure gameplay from start to finish with zero distractions.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎨</div>
+      <div class="feature-title">Icon Customization</div>
+      <div class="feature-desc">Thousands of skins, colors, trails and effects — all unlocked from day one. Make your cube uniquely yours.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📴</div>
+      <div class="feature-title">Offline Play</div>
+      <div class="feature-desc">No WiFi? No problem. Play anywhere, anytime without needing a data connection. Perfect for traveling.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- INFO -->
+<section id="info">
+  <div class="fade-in">
+    <div class="section-label">App Details</div>
+    <h2 class="section-title">Game <span>Information</span></h2>
+  </div>
+  <table class="info-table fade-in">
+    <tr><td>Version</td><td>v2.2.143</td></tr>
+    <tr><td>Developer</td><td>RobTop Games</td></tr>
+    <tr><td>Size</td><td>153.8 MB</td></tr>
+    <tr><td>Category</td><td>Arcade / Action</td></tr>
+    <tr><td>Rating</td><td>4.5 / 5.0</td></tr>
+    <tr><td>Downloads</td><td>5 Million+</td></tr>
+    <tr><td>Mod Features</td><td>Unlimited Everything</td></tr>
+    <tr><td>Platform</td><td>Android, iOS, PC</td></tr>
+  </table>
+</section>
+
+<div class="divider"></div>
+
+<!-- LEVELS -->
+<section id="levels">
+  <div class="fade-in">
+    <div class="section-label">Difficulty System</div>
+    <h2 class="section-title">Choose Your <span>Challenge</span></h2>
+    <p class="section-desc">From beginner-friendly stages to near-impossible demon levels — there is a challenge for every skill level.</p>
+  </div>
+  <div class="levels-list fade-in">
+    <div class="level-item">
+      <span class="level-badge badge-easy">Easy</span>
+      <div class="level-info">
+        <h4>Easy Level</h4>
+        <p>Perfect starting point. Learn the controls and get a feel for the rhythm-based gameplay without pressure.</p>
+      </div>
+    </div>
+    <div class="level-item">
+      <span class="level-badge badge-normal">Normal</span>
+      <div class="level-info">
+        <h4>Normal Level</h4>
+        <p>Speed picks up. More obstacles appear. A solid middle ground for players who have mastered the basics.</p>
+      </div>
+    </div>
+    <div class="level-item">
+      <span class="level-badge badge-hard">Hard</span>
+      <div class="level-info">
+        <h4>Hard Level</h4>
+        <p>Requires real focus and fast reflexes. One wrong tap sends you back to the beginning — every move matters.</p>
+      </div>
+    </div>
+    <div class="level-item">
+      <span class="level-badge badge-harder">Harder</span>
+      <div class="level-info">
+        <h4>Harder Level</h4>
+        <p>Extreme precision required. Patterns become complex and unforgiving. Only practiced players can push through.</p>
+      </div>
+    </div>
+    <div class="level-item">
+      <span class="level-badge badge-demon">Demon</span>
+      <div class="level-info">
+        <h4>Demon Level</h4>
+        <p>The ultimate test. Near-impossible obstacles designed to break your will. Complete it and call yourself a legend.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD CTA -->
+<div class="download-section fade-in" id="download">
+  <h2>Ready to Play for Free?</h2>
+  <p>Download Geometry Dash MOD APK now and get every feature unlocked from the very first second.</p>
+  <div class="download-platforms">
+    <a href="https://geometrydashpro.net/" class="platform-btn" target="_blank">
+      🤖 Android APK
+    </a>
+    <a href="https://geometrydashpro.net/geometry-dash-mod-apk-for-ios/" class="platform-btn" target="_blank">
+      🍎 iOS Version
+    </a>
+    <a href="https://geometrydashpro.net/download-geometry-dash-for-pc/" class="platform-btn" target="_blank">
+      💻 PC Version
+    </a>
+    <a href="https://geometrydashpro.net/geometry-dash-subzero/" class="platform-btn" target="_blank">
+      ❄️ Subzero
+    </a>
+  </div>
+  <a href="https://geometrydashpro.net/" class="btn-primary" target="_blank">Download Now — It's Free</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>geometrydashpro.net &nbsp;|&nbsp; <a href="https://geometrydashpro.net/" target="_blank">Visit Main Site</a></p>
+</footer>
+
+<script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
